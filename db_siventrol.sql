@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Des 2023 pada 05.30
+-- Waktu pembuatan: 29 Des 2023 pada 11.06
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 7.4.33
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_siventrol`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_barang`
+--
+
+CREATE TABLE `tb_barang` (
+  `id_barang` varchar(8) NOT NULL,
+  `nama_barang` varchar(50) NOT NULL,
+  `unit` varchar(5) NOT NULL,
+  `harga_beli` varchar(50) NOT NULL,
+  `harga_jual` varchar(50) NOT NULL,
+  `diskon` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -41,11 +56,17 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `nama_lengkap`, `password`, `level`, `last_login`) VALUES
-(1, 'admin', 'Administrator', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2023-12-29 12:24:25');
+(1, 'admin', 'Administrator', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2023-12-29 18:00:32');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `tb_barang`
+--
+ALTER TABLE `tb_barang`
+  ADD PRIMARY KEY (`id_barang`);
 
 --
 -- Indeks untuk tabel `tb_user`
