@@ -24,7 +24,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <!-- <li class="nav-header">MAIN NAVIGATION</li> -->
+                <li class="nav-header">MAIN MENU</li>
                 <li class="nav-item">
                     <a href="<?= site_url('admin') ?>" class="nav-link">
                         <i class="nav-icon fa fa-home"></i>
@@ -42,7 +42,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= site_url(); ?>admin/#" class="nav-link ">
+                            <a href="<?= site_url(); ?>admin/data_barang" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Barang</p>
                             </a>
@@ -68,7 +68,7 @@
 
                 <li class="nav-item">
                     <a href="<?= site_url(); ?>admin/#" class="nav-link">
-                        <i class="far fa-calendar nav-icon"></i>
+                        <i class="far fa-calendar-alt nav-icon"></i>
                         <p>Barang Masuk</p>
                     </a>
                 </li>
