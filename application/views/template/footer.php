@@ -20,6 +20,7 @@
                             </td>
                             <td style="padding: 8px 8px;">
                                 <h6>
+                                    <p class="tengah"><strong>Aplikasi Inventori Kontrol</strong></p>
                                     <p><strong>Version</strong> 0.0.1 (Dev)</p>
                                     This web app uses:
                                     <ul>
