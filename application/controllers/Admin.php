@@ -21,12 +21,26 @@ class Admin extends CI_Controller
         redirect('login');
     }
 
+    private function hash_password($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
     public function index()
     {
-        $data['avatar'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
-
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
         $data['title'] = 'Home';
-
         $this->load->view('admin/index', $data);
+    }
+
+    ####################################
+    //* Data Barang
+    ####################################
+    public function data_barang()
+    {
+        $data['list_data'] = $this->M_data->select('tb_barang');
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Data Barang';
+        $this->load->view('admin/d_barang/tbl_barang', $data);
     }
 }
