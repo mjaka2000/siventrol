@@ -74,11 +74,11 @@
                                                 <td><?= $d->unit; ?></td>
                                                 <td>Rp&nbsp;<?= number_format($d->harga_beli); ?></td>
                                                 <td>Rp&nbsp;<?= number_format($d->harga_jual); ?></td>
-                                                <td><?= $d->diskon; ?></td>
+                                                <td><?= $d->diskon; ?> %</td>
                                                 <td>
                                                     <!-- <a href="<?= site_url('admin/detail_barang/' . $d->id_barang); ?>" title="Lihat Detail" type="button" class="btn btn-sm btn-warning" name="btn_edit"><i class="fa fa-eye"></i></a> -->
                                                     <a href="<?= site_url('admin/update_barang/' . $d->id_barang); ?>" title="Ubah" type="button" class="btn btn-sm btn-info" name="btn_edit"><i class="fa fa-edit"></i></a>
-                                                    <a href="<?= site_url('admin/hapus_data_barang/' . $d->id_barang); ?>" title="Hapus" type="button" class="btn btn-sm btn-danger btn-delete" name="btn_delete"><i class="fa fa-trash"></i></a>
+                                                    <a href="<?= site_url('admin/hapus_barang/' . $d->id_barang); ?>" title="Hapus" type="button" class="btn btn-sm btn-danger btn-delete" name="btn_delete"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
