@@ -58,4 +58,29 @@ class M_data extends CI_Model
     ####################################
     //! End Batas Query User (Jangan diubah)
     ####################################
+    ####################################
+    //! Old query but still use
+    ####################################
+
+    public function get_data($tabel, $where)
+    {
+        $query = $this->db->select()
+            ->from($tabel)
+            ->where($where)
+            ->get();
+        return $query->result();
+    }
+    ####################################
+    //* Data Barang
+    ####################################
+    public function get_id_barang($tabel)
+    {
+        $query = $this->db->select_max('id_barang')
+            ->from($tabel)
+            ->get();
+        return $query->result();
+    }
+    ####################################
+    //* End Data Barang
+    ####################################
 }
