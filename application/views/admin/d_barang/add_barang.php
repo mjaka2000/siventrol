@@ -53,7 +53,7 @@
                                 <div class="form-group">
                                     <label for="kode_barang" class="form-label">Kode Barang</label>
 
-                                    <input type="text" name="kode_barang" class="form-control" id="kode_barang" placeholder="" readonly required value="<?= $kd_brg; ?>">
+                                    <input type="text" name="id_barang" class="form-control" id="id_barang" placeholder="" readonly required value="<?= $kd_brg; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="nama_barang" class="form-label">Nama Barang</label>
