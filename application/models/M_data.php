@@ -81,6 +81,13 @@ class M_data extends CI_Model
         return $query->result();
     }
     ####################################
-    //* End Data Barang
+    //* Data Supplier
     ####################################
+    public function get_id_supplier($tabel)
+    {
+        $query = $this->db->select_max('id_supplier')
+            ->from($tabel)
+            ->get();
+        return $query->result();
+    }
 }
