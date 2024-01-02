@@ -52,7 +52,7 @@ class Admin extends CI_Controller
             $isi = substr($idbrg->id_barang, 4);
             $id = (int) $isi;
             $id = $id + 1;
-            $auto_id_brg = "BRG-" . str_pad($id, 4, "0", STR_PAD_LEFT);
+            $auto_id_brg = "BRG-" . str_pad($id, 1, "0", STR_PAD_LEFT);
             // }
         }
         $data['kd_brg'] = $auto_id_brg;
@@ -70,7 +70,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('diskon', 'Diskon', 'trim|required');
 
         if ($this->form_validation->run() === TRUE) {
-            $kode_barang = $this->input->post('kode_barang', TRUE);
+            $id_barang = $this->input->post('id_barang', TRUE);
             $nama_barang = $this->input->post('nama_barang', TRUE);
             $unit = $this->input->post('unit', TRUE);
             $harga_beli = $this->input->post('harga_beli', TRUE);
@@ -79,7 +79,7 @@ class Admin extends CI_Controller
             // $status           = 1;
 
             $data = array(
-                'id_barang' => $kode_barang,
+                'id_barang' => $id_barang,
                 'nama_barang' => $nama_barang,
                 'unit' => $unit,
                 'harga_beli' => $harga_beli,
@@ -115,14 +115,14 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('diskon', 'Diskon', 'trim|required');
 
         if ($this->form_validation->run() === TRUE) {
-            $kode_barang = $this->input->post('kode_barang', TRUE);
+            $id_barang = $this->input->post('id_barang', TRUE);
             $nama_barang = $this->input->post('nama_barang', TRUE);
             $unit = $this->input->post('unit', TRUE);
             $harga_beli = $this->input->post('harga_beli', TRUE);
             $harga_jual = $this->input->post('harga_jual', TRUE);
             $diskon = $this->input->post('diskon', TRUE);
             // $status           = 1;
-            $where = array('id_barang' => $kode_barang);
+            $where = array('id_barang' => $id_barang);
             $data = array(
                 // 'id_barang' => $kode_barang,
                 'nama_barang' => $nama_barang,
@@ -149,4 +149,127 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('msg_sukses', 'Data Berhasil Dihapus');
         redirect(site_url('admin/data_barang'));
     }
+
+    ####################################
+    //* End Data Barang
+    ####################################
+    ####################################
+    //* Data Supplier
+    ####################################
+    public function data_supplier()
+    {
+        $data['list_data'] = $this->M_data->select('tb_supplier');
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Data Supplier';
+        $this->load->view('admin/d_supplier/tbl_supplier', $data);
+    }
+
+    public function tambah_supplier()
+    {
+        $id_spl = $this->M_data->get_id_supplier('tb_supplier');
+        foreach ($id_spl as $idspl) {
+            // if ($idbrg) {
+            $isi = substr($idspl->id_supplier, 4);
+            $id = (int) $isi;
+            $id = $id + 1;
+            $auto_id_spl = "SPL-" . str_pad($id, 1, "0", STR_PAD_LEFT);
+            // }
+        }
+        $data['kd_spl'] = $auto_id_spl;
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Tambah Data Supplier';
+        $this->load->view('admin/d_supplier/add_supplier', $data);
+    }
+
+    public function proses_tambahsupplier()
+    {
+        $this->form_validation->set_rules('nama_supplier', 'Nama Supplier', 'trim|required');
+        $this->form_validation->set_rules('alamat_supplier', 'Nama Supplier', 'trim|required');
+        $this->form_validation->set_rules('kota_supplier', 'Kota', 'trim|required');
+        $this->form_validation->set_rules('email_supplier', 'Email', 'trim|required');
+        $this->form_validation->set_rules('kontak_supplier', 'Kontak', 'trim|required|max_length[13]');
+
+        if ($this->form_validation->run() === TRUE) {
+            $id_supplier = $this->input->post('id_supplier', TRUE);
+            $nama_supplier = $this->input->post('nama_supplier', TRUE);
+            $alamat_supplier = $this->input->post('alamat_supplier', TRUE);
+            $kota_supplier = $this->input->post('kota_supplier', TRUE);
+            $email_supplier = $this->input->post('email_supplier', TRUE);
+            $kontak_supplier = $this->input->post('kontak_supplier', TRUE);
+            // $status           = 1;
+
+            $data = array(
+                'id_supplier' => $id_supplier,
+                'nama_supplier' => $nama_supplier,
+                'alamat_supplier' => $alamat_supplier,
+                'kota_supplier' => $kota_supplier,
+                'email_supplier' => $email_supplier,
+                'kontak_supplier' => $kontak_supplier,
+            );
+            $this->M_data->insert('tb_supplier', $data);
+            $this->session->set_flashdata('msg_sukses', 'Data Berhasil Disimpan');
+            redirect(site_url('admin/data_supplier'));
+        } else {
+            $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+            $data['title'] = 'Tambah Data Supplier';
+            $this->load->view('admin/d_supplier/add_supplier', $data);
+        }
+    }
+
+    public function update_supplier()
+    {
+        $uri = $this->uri->segment(3);
+        $where = array('id_supplier' => $uri);
+        $data['edit_data'] = $this->M_data->get_data('tb_supplier', $where);
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Edit Data Supplier';
+        $this->load->view('admin/d_supplier/edit_supplier', $data);
+    }
+
+    public function proses_updatesupplier()
+    {
+        $this->form_validation->set_rules('nama_supplier', 'Nama Supplier', 'trim|required');
+        $this->form_validation->set_rules('alamat_supplier', 'Nama Supplier', 'trim|required');
+        $this->form_validation->set_rules('kota_supplier', 'Kota', 'trim|required');
+        $this->form_validation->set_rules('email_supplier', 'Email', 'trim|required');
+        $this->form_validation->set_rules('kontak_supplier', 'Kontak', 'trim|required|max_length[13]');
+
+        if ($this->form_validation->run() === TRUE) {
+            $id_supplier = $this->input->post('id_supplier', TRUE);
+            $nama_supplier = $this->input->post('nama_supplier', TRUE);
+            $alamat_supplier = $this->input->post('alamat_supplier', TRUE);
+            $kota_supplier = $this->input->post('kota_supplier', TRUE);
+            $email_supplier = $this->input->post('email_supplier', TRUE);
+            $kontak_supplier = $this->input->post('kontak_supplier', TRUE);
+            // $status           = 1;
+            $where = array('id_supplier' => $id_supplier);
+            $data = array(
+                // 'id_supplier' => $id_supplier,
+                'nama_supplier' => $nama_supplier,
+                'alamat_supplier' => $alamat_supplier,
+                'kota_supplier' => $kota_supplier,
+                'email_supplier' => $email_supplier,
+                'kontak_supplier' => $kontak_supplier,
+            );
+            $this->M_data->update('tb_supplier', $data, $where);
+            $this->session->set_flashdata('msg_sukses', 'Data Berhasil Disimpan');
+            redirect(site_url('admin/data_supplier'));
+        } else {
+            $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+            $data['title'] = 'Edit Data Supplier';
+            $this->load->view('admin/d_supplier/edit_supplier', $data);
+        }
+    }
+
+    public function hapus_supplier()
+    {
+        $uri = $this->uri->segment(3);
+        $where = array('id_supplier' => $uri);
+        $this->M_data->delete('tb_supplier', $where);
+        $this->session->set_flashdata('msg_sukses', 'Data Berhasil Dihapus');
+        redirect(site_url('admin/data_supplier'));
+    }
+    ####################################
+    //* End Data Supplier 
+    ####################################
 }
