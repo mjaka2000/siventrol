@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Des 2023 pada 11.06
+-- Waktu pembuatan: 02 Jan 2024 pada 11.07
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 7.4.33
 
@@ -28,13 +28,43 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_barang` (
-  `id_barang` varchar(8) NOT NULL,
+  `id_barang` varchar(10) NOT NULL,
   `nama_barang` varchar(50) NOT NULL,
   `unit` varchar(5) NOT NULL,
   `harga_beli` varchar(50) NOT NULL,
   `harga_jual` varchar(50) NOT NULL,
   `diskon` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data untuk tabel `tb_barang`
+--
+
+INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `unit`, `harga_beli`, `harga_jual`, `diskon`) VALUES
+('BRG-1', 'HP Samsung A5', 'pcs', '4500000', '5000000', '0'),
+('BRG-2', 'Indomie Goreng', 'pcs', '3000', '3500', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_supplier`
+--
+
+CREATE TABLE `tb_supplier` (
+  `id_supplier` varchar(10) NOT NULL,
+  `nama_supplier` varchar(50) NOT NULL,
+  `alamat_supplier` varchar(50) NOT NULL,
+  `kota_supplier` varchar(25) NOT NULL,
+  `email_supplier` varchar(25) NOT NULL,
+  `kontak_supplier` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data untuk tabel `tb_supplier`
+--
+
+INSERT INTO `tb_supplier` (`id_supplier`, `nama_supplier`, `alamat_supplier`, `kota_supplier`, `email_supplier`, `kontak_supplier`) VALUES
+('SPL-1', 'Wanda', 'Jl. Sungai Miai', 'BJM', 'wanda12@gmail.com', '0896152637163');
 
 -- --------------------------------------------------------
 
@@ -56,7 +86,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `nama_lengkap`, `password`, `level`, `last_login`) VALUES
-(1, 'admin', 'Administrator', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2023-12-29 18:00:32');
+(1, 'admin', 'Administrator', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2024-01-02 16:28:29');
 
 --
 -- Indexes for dumped tables
@@ -67,6 +97,12 @@ INSERT INTO `tb_user` (`id_user`, `username`, `nama_lengkap`, `password`, `level
 --
 ALTER TABLE `tb_barang`
   ADD PRIMARY KEY (`id_barang`);
+
+--
+-- Indeks untuk tabel `tb_supplier`
+--
+ALTER TABLE `tb_supplier`
+  ADD PRIMARY KEY (`id_supplier`);
 
 --
 -- Indeks untuk tabel `tb_user`
