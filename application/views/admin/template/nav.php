@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand bg-lightblue navbar-dark">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -23,7 +23,7 @@
                     <img src="<?= base_url('assets/upload/user/' . $a->nama_file); ?>" class="user-image img-circle elevation-2" alt="User Image">
                 <?php } ?> -->
                 <i class="fas fa-user"></i>&nbsp;
-                <span class="hidden-xs" style="color: white;"><?= $this->session->userdata('nama_lengkap') ?></span>
+                <span class="hidden-xs" style="color: #;"><?= $this->session->userdata('nama_lengkap') ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
