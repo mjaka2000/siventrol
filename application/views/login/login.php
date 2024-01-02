@@ -91,6 +91,10 @@
                     </script>
                     SIVENTROL Web.</small>
             </center>
+            <center style="color: black;">
+                <small>admin | admin</small><br>
+                <small>user | user</small>
+            </center>
         </div>
     </div>
     <!-- /.login-box -->
