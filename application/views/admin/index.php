@@ -29,9 +29,9 @@
         </div>
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
-            <h2 align="center">Selamat Datang, <strong><?= $this->session->userdata('nama_lengkap') ?></strong> sebagai Administrator!</h2>
+            <h5 align="center" data-content='Welcome!' id="greetings"><strong><?= $this->session->userdata('nama_lengkap') ?></strong> sebagai Administrator!</h5>
+            <!-- <p data-content='Welcome!' id='greetings' /> -->
             <div class="row">
-
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
@@ -127,6 +127,28 @@
                 "body").style.visibility = "visible";
         }
     };
+</script>
+
+<script>
+    /*<![CDATA[*/
+    var greetElem = document.querySelector("#greetings");
+    var curHr = new Date().getHours();
+    var greetMes = [
+        "Selamat Pagi!",
+        "Selamat Siang!",
+        "Selamat Sore!",
+        "Selamat Malam!",
+        "Selamat Tidur"
+    ];
+    let greetText = "";
+    if (curHr < 12) greetText = greetMes[0];
+    else if (curHr < 16) greetText = greetMes[1];
+    else if (curHr < 18) greetText = greetMes[2];
+    else if (curHr < 22) greetText = greetMes[3];
+    // else if (curHr < 22) greetText = greetMes[4];
+    else greetText = greetMes[4];
+    greetElem.setAttribute('data-content', greetText);
+    /*]]>*/
 </script>
 
 </body>

@@ -204,3 +204,14 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 } 
+
+#greetings::before {
+  content: attr(data-content);
+}
+
+#greetings::before {
+  content: attr(data-content);
+  padding:10px ;
+  /* background:#eee; */
+  border-radius:8px;
+}
