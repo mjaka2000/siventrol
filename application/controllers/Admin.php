@@ -252,7 +252,7 @@ class Admin extends CI_Controller
                 'kontak_supplier' => $kontak_supplier,
             );
             $this->M_data->update('tb_supplier', $data, $where);
-            $this->session->set_flashdata('msg_sukses', 'Data Berhasil Disimpan');
+            $this->session->set_flashdata('msg_sukses', 'Data Berhasil Diubah');
             redirect(site_url('admin/data_supplier'));
         } else {
             $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
@@ -271,5 +271,127 @@ class Admin extends CI_Controller
     }
     ####################################
     //* End Data Supplier 
+    ####################################
+    ####################################
+    //* Data Pelanggan
+    ####################################
+
+    public function data_pelanggan()
+    {
+        $data['list_data'] = $this->M_data->select('tb_pelanggan');
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Data Pelanggan';
+        $this->load->view('admin/d_pelanggan/tbl_pelanggan', $data);
+    }
+
+    public function tambah_pelanggan()
+    {
+        $id_plg = $this->M_data->get_id_pelanggan('tb_pelanggan');
+        foreach ($id_plg as $idplg) {
+            // if ($idplg) {
+            $isi = substr($idplg->id_pelanggan, 4);
+            $id = (int) $isi;
+            $id = $id + 1;
+            $auto_id_plg = "PLG-" . str_pad($id, 1, "0", STR_PAD_LEFT);
+            // }
+        }
+        $data['kd_plg'] = $auto_id_plg;
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Tambah Data Pelanggan';
+        $this->load->view('admin/d_pelanggan/add_pelanggan', $data);
+    }
+
+    public function proses_tambahpelanggan()
+    {
+        $this->form_validation->set_rules('nama_pelanggan', 'Nama Pelanggan', 'trim|required');
+        $this->form_validation->set_rules('alamat_pelanggan', 'Nama Pelanggan', 'trim|required');
+        $this->form_validation->set_rules('kota_pelanggan', 'Kota', 'trim|required');
+        $this->form_validation->set_rules('email_pelanggan', 'Email', 'trim|required');
+        $this->form_validation->set_rules('kontak_pelanggan', 'Kontak', 'trim|required|max_length[13]');
+
+        if ($this->form_validation->run() === TRUE) {
+            $id_pelanggan = $this->input->post('id_pelanggan', TRUE);
+            $nama_pelanggan = $this->input->post('nama_pelanggan', TRUE);
+            $alamat_pelanggan = $this->input->post('alamat_pelanggan', TRUE);
+            $kota_pelanggan = $this->input->post('kota_pelanggan', TRUE);
+            $email_pelanggan = $this->input->post('email_pelanggan', TRUE);
+            $kontak_pelanggan = $this->input->post('kontak_pelanggan', TRUE);
+            // $status           = 1;
+
+            $data = array(
+                'id_pelanggan' => $id_pelanggan,
+                'nama_pelanggan' => $nama_pelanggan,
+                'alamat_pelanggan' => $alamat_pelanggan,
+                'kota_pelanggan' => $kota_pelanggan,
+                'email_pelanggan' => $email_pelanggan,
+                'kontak_pelanggan' => $kontak_pelanggan,
+            );
+            $this->M_data->insert('tb_pelanggan', $data);
+            $this->session->set_flashdata('msg_sukses', 'Data Berhasil Disimpan');
+            redirect(site_url('admin/data_pelanggan'));
+        } else {
+            $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+            $data['title'] = 'Tambah Data Pelanggan';
+            $this->load->view('admin/d_pelanggan/add_pelanggan', $data);
+        }
+    }
+
+    public function update_pelanggan()
+    {
+        $uri = $this->uri->segment(3);
+        $where = array('id_pelanggan' => $uri);
+        $data['edit_data'] = $this->M_data->get_data('tb_pelanggan', $where);
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Edit Data Pelanggan';
+        $this->load->view('admin/d_pelanggan/edit_pelanggan', $data);
+    }
+
+    public function proses_updatepelanggan()
+    {
+
+        $this->form_validation->set_rules('nama_pelanggan', 'Nama Pelanggan', 'trim|required');
+        $this->form_validation->set_rules('alamat_pelanggan', 'Nama Pelanggan', 'trim|required');
+        $this->form_validation->set_rules('kota_pelanggan', 'Kota', 'trim|required');
+        $this->form_validation->set_rules('email_pelanggan', 'Email', 'trim|required');
+        $this->form_validation->set_rules('kontak_pelanggan', 'Kontak', 'trim|required|max_length[13]');
+
+        if ($this->form_validation->run() === TRUE) {
+            $id_pelanggan = $this->input->post('id_pelanggan', TRUE);
+            $nama_pelanggan = $this->input->post('nama_pelanggan', TRUE);
+            $alamat_pelanggan = $this->input->post('alamat_pelanggan', TRUE);
+            $kota_pelanggan = $this->input->post('kota_pelanggan', TRUE);
+            $email_pelanggan = $this->input->post('email_pelanggan', TRUE);
+            $kontak_pelanggan = $this->input->post('kontak_pelanggan', TRUE);
+            // $status           = 1;
+
+            $where = array('id_pelanggan' => $id_pelanggan);
+            $data = array(
+                // 'id_pelanggan' => $id_pelanggan,
+                'nama_pelanggan' => $nama_pelanggan,
+                'alamat_pelanggan' => $alamat_pelanggan,
+                'kota_pelanggan' => $kota_pelanggan,
+                'email_pelanggan' => $email_pelanggan,
+                'kontak_pelanggan' => $kontak_pelanggan,
+            );
+            $this->M_data->update('tb_pelanggan', $data, $where);
+            $this->session->set_flashdata('msg_sukses', 'Data Berhasil Diubah');
+            redirect(site_url('admin/data_pelanggan'));
+        } else {
+            $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+            $data['title'] = 'Edit Data Pelanggan';
+            $this->load->view('admin/d_pelanggan/edit_pelanggan', $data);
+        }
+    }
+
+    public function hapus_pelanggan()
+    {
+        $uri = $this->uri->segment(3);
+        $where = array('id_pelanggan' => $uri);
+        $this->M_data->delete('tb_pelanggan', $where);
+        $this->session->set_flashdata('msg_sukses', 'Data Berhasil Dihapus');
+        redirect(site_url('admin/data_pelanggan'));
+    }
+    ####################################
+    //* End Data Pelanggan
     ####################################
 }
