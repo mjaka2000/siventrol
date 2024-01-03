@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jan 2024 pada 11.07
+-- Waktu pembuatan: 03 Jan 2024 pada 10.28
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 7.4.33
 
@@ -47,6 +47,21 @@ INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `unit`, `harga_beli`, `harg
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_pelanggan`
+--
+
+CREATE TABLE `tb_pelanggan` (
+  `id_pelanggan` varchar(10) NOT NULL,
+  `nama_pelanggan` varchar(50) NOT NULL,
+  `alamat_pelanggan` varchar(50) NOT NULL,
+  `kota_pelanggan` varchar(25) NOT NULL,
+  `email_pelanggan` varchar(25) NOT NULL,
+  `kontak_pelanggan` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_supplier`
 --
 
@@ -86,7 +101,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `nama_lengkap`, `password`, `level`, `last_login`) VALUES
-(1, 'admin', 'Administrator', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2024-01-02 16:28:29');
+(1, 'admin', 'Administrator', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2024-01-03 16:48:39');
 
 --
 -- Indexes for dumped tables
@@ -97,6 +112,12 @@ INSERT INTO `tb_user` (`id_user`, `username`, `nama_lengkap`, `password`, `level
 --
 ALTER TABLE `tb_barang`
   ADD PRIMARY KEY (`id_barang`);
+
+--
+-- Indeks untuk tabel `tb_pelanggan`
+--
+ALTER TABLE `tb_pelanggan`
+  ADD PRIMARY KEY (`id_pelanggan`);
 
 --
 -- Indeks untuk tabel `tb_supplier`
