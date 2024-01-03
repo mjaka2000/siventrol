@@ -70,6 +70,7 @@ class M_data extends CI_Model
             ->get();
         return $query->result();
     }
+
     ####################################
     //* Data Barang
     ####################################
@@ -80,12 +81,24 @@ class M_data extends CI_Model
             ->get();
         return $query->result();
     }
+
     ####################################
     //* Data Supplier
     ####################################
     public function get_id_supplier($tabel)
     {
         $query = $this->db->select_max('id_supplier')
+            ->from($tabel)
+            ->get();
+        return $query->result();
+    }
+
+    ####################################
+    //* Data Pelanggan
+    ####################################
+    public function get_id_pelanggan($tabel)
+    {
+        $query = $this->db->select_max('id_pelanggan')
             ->from($tabel)
             ->get();
         return $query->result();
