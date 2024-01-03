@@ -51,11 +51,11 @@
                         <li class="nav-item">
                             <a href="<?= site_url(); ?>admin/data_supplier" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Data Supllier</p>
+                                <p>Data Supplier</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= site_url(); ?>admin/#" class="nav-link">
+                            <a href="<?= site_url(); ?>admin/data_pelanggan" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Pelanggan</p>
                             </a>
