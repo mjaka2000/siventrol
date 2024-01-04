@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard <small>Control Panel</small></h1>
+                    <h1 class="m-0">Dashboard <small>Home</small></h1>
 
                 </div><!-- /.col -->
                 <div class="col-sm-6">
@@ -29,7 +29,14 @@
         </div>
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
-            <h5 align="center" data-content='Welcome!' id="greetings"><strong><?= $this->session->userdata('nama_lengkap') ?></strong> sebagai Administrator!</h5>
+            <div class="col">
+                <div class="small-box bg-gradient-primary" style="text-align: center;">
+                    <div class="inner">
+                        <h5 align="center" data-content='Welcome!' id="greetings">, <strong><?= $this->session->userdata('nama_lengkap') ?></strong>!</h5>
+                    </div>
+                </div>
+
+            </div>
             <!-- <div class="clock" id="clockDisplay"></div> -->
             <!-- <p data-content='Welcome!' id='greetings' /> -->
             <div class="row">
@@ -37,8 +44,11 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>0</h3>
-
+                            <?php if (!empty($dtBrg)) { ?>
+                                <h3><?= $dtBrg; ?></h3>
+                            <?php } else { ?>
+                                <h3>0</h3>
+                            <?php } ?>
                             <p>Total Barang</p>
                         </div>
                         <div class="icon">
@@ -51,8 +61,11 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>0</h3>
-
+                            <?php if (!empty($dtSpl)) { ?>
+                                <h3><?= $dtSpl; ?></h3>
+                            <?php } else { ?>
+                                <h3>0</h3>
+                            <?php } ?>
                             <p>Total Supplier</p>
                         </div>
                         <div class="icon">
@@ -65,8 +78,11 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>0</h3>
-
+                            <?php if (!empty($dtPlg)) { ?>
+                                <h3><?= $dtPlg; ?></h3>
+                            <?php } else { ?>
+                                <h3>0</h3>
+                            <?php } ?>
                             <p>Total Pelanggan</p>
                         </div>
                         <div class="icon">
@@ -135,47 +151,23 @@
     var greetElem = document.querySelector("#greetings");
     var curHr = new Date().getHours();
     var greetMes = [
-        "Selamat Pagi!",
-        "Selamat Siang!",
-        "Selamat Sore!",
-        "Selamat Malam!",
+        "Selamat Pagi",
+        "Selamat Siang",
+        "Selamat Sore",
+        "Selamat Malam",
         "Selamat Tidur"
     ];
     let greetText = "";
     if (curHr < 12) greetText = greetMes[0];
     else if (curHr < 16) greetText = greetMes[1];
-    else if (curHr < 18) greetText = greetMes[2];
+    else if (curHr < 19) greetText = greetMes[2];
     else if (curHr < 22) greetText = greetMes[3];
     // else if (curHr < 22) greetText = greetMes[4];
     else greetText = greetMes[4];
     greetElem.setAttribute('data-content', greetText);
     /*]]>*/
 </script>
-<script>
-    function renderTime() {
-        var currentTime = new Date();
-        var h = currentTime.getHours();
-        var m = currentTime.getMinutes();
-        var s = currentTime.getSeconds();
 
-        if (h == 0) {
-            h = 24;
-        }
-        if (h < 10) {
-            h = "0" + h;
-        }
-        if (m < 10) {
-            m = "0" + m;
-        }
-        if (s < 10) {
-            s = "0" + s;
-        }
-        var myClock = document.getElementById('clockDisplay');
-        myClock.textContent = h + ":" + m + ":" + s + "";
-        setTimeout('renderTime()', 1000)
-    }
-    renderTime();
-</script>
 </body>
 
 </html>
