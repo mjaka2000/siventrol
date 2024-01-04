@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= site_url('admin'); ?>"><i class="fas fa-home"></i></a></li>
-                        <li class="breadcrumb-item"><a href="<?= site_url('admin/users'); ?>">User</a></li>
+                        <li class="breadcrumb-item"><a href="<?= site_url('admin/data_users'); ?>">User</a></li>
                         <li class="breadcrumb-item active">Tambah Data </li>
                     </ol>
                 </div><!-- /.col -->
@@ -32,6 +32,7 @@
                 <div class="col-md-5">
                     <div class="card">
                         <div class="card-header">
+                            <i class="fa fa-plus mr-2"></i>
                             Tambah Data User
                         </div>
                         <div class="card-body">
@@ -53,7 +54,7 @@
                                 <div class="form-group row">
                                     <label for="username" class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" required>
+                                        <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Nama" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -76,21 +77,19 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="role" class="col-sm-3 col-form-label">Role</label>
+                                    <label for="role" class="col-sm-3 col-form-label">Level</label>
                                     <div class="col-sm-9">
-                                        <select name="role" id="" class="form-control" style="width: 50%;" required>
-                                            <option value="" selected="" disabled>--Pilih Role User--</option>
+                                        <select name="level" id="" class="form-control" style="width: 50%;" required>
+                                            <option value="" selected="" disabled>--Pilih Level User--</option>
                                             <option value="0">User Admin</option>
-                                            <option value="1">User Teknisi</option>
-                                            <option value="2">User Pimpinan</option>
-                                            <option value="3" disabled>User Penyewa</option>
+                                            <option value="1">User Biasa</option>
                                         </select>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="form-group" align="center">
-                                    <button onclick="history.back(-1)" type="button" class="btn btn-sm btn-default" name="btn_kembali"><i class="fa fa-arrow-left mr-2"></i>Kembali</button>
-                                    <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-check mr-2"></i>Submit</button>
+                                    <button onclick="history.back(-1)" type="button" class="btn btn-sm btn-default" name="btn_kembali">Kembali</button>
+                                    <button type="submit" class="btn btn-sm btn-success">Simpan</button>
                                 </div>
                             </form>
                         </div>

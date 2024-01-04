@@ -49,7 +49,7 @@
                                         <th style="width :10px">No.</th>
                                         <th>Nama</th>
                                         <th>Username</th>
-                                        <th>level</th>
+                                        <th>Level</th>
                                         <th>Last Login</th>
                                         <th style="width:10%">Aksi</th>
                                     </tr>
@@ -68,7 +68,7 @@
                                                 <?php } else { ?>
                                                     <td>User Biasa</td>
                                                 <?php } ?>
-                                                <td><?= date('d-m-Y H:i:s', strtotime($u->last_login))  ?></td>
+                                                <td><?= date('d/m/Y H:i:s', strtotime($u->last_login))  ?></td>
                                                 <td>
                                                     <a href="<?= site_url('admin/update_user/' . $u->id_user); ?>" type="button" class="btn btn-sm btn-info" name="btn_edit"><i class="fa fa-edit "></i></a>
                                                     <a href="<?= site_url('admin/hapus_user/' . $u->id_user); ?>" type="button" title="Hapus" class="btn btn-sm btn-danger btn-delete" name="btn_delete"><i class="fa fa-trash "></i></a>

@@ -40,7 +40,7 @@
                                     <?php } ?> 
                                 </div>-->
                                 <strong><?= $this->session->userdata('nama_lengkap') ?></strong> sebagai Administrator
-                                <br><small>Last Login : <?= date('d-m-Y H:i:s', strtotime($this->session->userdata('last_login'))) ?></small>
+                                <br><small>Last Login : <?= date('d/m/Y H:i:s', strtotime($this->session->userdata('last_login'))) ?></small>
                             </div>
                             <?php if ($this->session->flashdata('msg_gambar_sukses')) { ?>
                                 <div class="alert alert-success alert-dismissable">
