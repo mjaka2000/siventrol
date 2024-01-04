@@ -71,6 +71,13 @@ class M_data extends CI_Model
         return $query->result();
     }
 
+    public function numrows($tabel)
+    {
+        $query = $this->db->select()
+            ->from($tabel)
+            ->get();
+        return $query->num_rows();
+    }
     ####################################
     //* Data Barang
     ####################################
