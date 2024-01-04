@@ -28,11 +28,70 @@ class Admin extends CI_Controller
 
     public function index()
     {
+        $data['dtBrg'] = $this->M_data->numrows('tb_barang');
+        $data['dtSpl'] = $this->M_data->numrows('tb_supplier');
+        $data['dtPlg'] = $this->M_data->numrows('tb_pelanggan');
         $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
         $data['title'] = 'Home';
         $this->load->view('admin/index', $data);
     }
 
+    ####################################
+    //* Users
+    ####################################
+    public function data_users()
+    {
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['list_data'] = $this->M_data->select('tb_user');
+        $data['title'] = 'Users';
+        $this->load->view('admin/d_users/tbl_users', $data);
+    }
+
+    ####################################
+    //* End Users
+    ####################################
+    ####################################
+    //* Profile
+    ####################################
+    public function profile()
+    {
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Profile';
+        $this->load->view('admin/d_users/profile', $data);
+    }
+
+    public function proses_newpassword()
+    {
+        $this->form_validation->set_rules('nama_lengkap', 'Nama', 'required');
+        $this->form_validation->set_rules('new_password', 'Password Baru', 'required');
+        $this->form_validation->set_rules('confirm_new_password', 'Konfirmasi Password Baru', 'required|matches[new_password]');
+
+        if ($this->form_validation->run() == true) {
+
+            $username = $this->input->post('username');
+            $nama_lengkap = $this->input->post('nama_lengkap');
+            $new_password = $this->input->post('new_password');
+
+            $data = array(
+                'nama_lengkap' => $nama_lengkap,
+                'password' => $this->hash_password($new_password)
+            );
+            $where = array(
+                'id_user' => $this->session->userdata('id_user')
+            );
+            $this->M_data->update_password('tb_user', $where, $data);
+            $this->session->set_flashdata('msg_sukses', 'Password Berhasil Diganti, Silahkan Logout dan Login Kembali');
+            redirect(site_url('admin/profile'));
+        } else {
+            $data['avatar'] = $this->M_data->get_avatar('tb_user', $this->session->userdata('name'));
+            $data['title'] = 'Profile';
+            $this->load->view('admin/users/profile', $data);
+        }
+    }
+
+    ####################################
+    //* End Profile
+    ####################################
     ####################################
     //* Data Barang
     ####################################
