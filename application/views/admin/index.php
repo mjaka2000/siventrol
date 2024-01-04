@@ -37,10 +37,8 @@
                 </div>
 
             </div>
-            <!-- <div class="clock" id="clockDisplay"></div> -->
-            <!-- <p data-content='Welcome!' id='greetings' /> -->
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-2 col-4">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -52,12 +50,12 @@
                             <p>Total Barang</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fas fa-layer-group"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-2 col-4">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -69,12 +67,12 @@
                             <p>Total Supplier</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fas fa-users"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-2 col-4">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -86,12 +84,12 @@
                             <p>Total Pelanggan</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fas fa-user"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-2 col-4">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -100,12 +98,12 @@
                             <p>Total Pembelian</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
+                            <i class="fas fa-cart-arrow-down"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-2 col-4">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -114,7 +112,7 @@
                             <p>Total Penjualan</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fas fa-truck"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
