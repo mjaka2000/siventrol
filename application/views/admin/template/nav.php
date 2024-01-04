@@ -9,6 +9,7 @@
         </li>
         <!-- <iframe src="https://free.timeanddate.com/clock/i96lo508/n439/tlid38/fn3" frameborxder="0" width="57" height="18"></iframe> -->
     </ul>
+    <div class="clock" id="clockDisplay"></div>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
