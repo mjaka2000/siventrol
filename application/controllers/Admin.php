@@ -41,12 +41,101 @@ class Admin extends CI_Controller
     ####################################
     public function data_users()
     {
-        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
         $data['list_data'] = $this->M_data->select('tb_user');
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
         $data['title'] = 'Users';
         $this->load->view('admin/d_users/tbl_users', $data);
     }
 
+    public function tambah_users()
+    {
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Users';
+        $this->load->view('admin/d_users/add_user', $data);
+    }
+
+    public function proses_tambahuser()
+    {
+        $this->form_validation->set_rules('nama_lengkap', 'Nama', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
+        $this->form_validation->set_rules('level', 'Level User', 'required');
+
+        if ($this->form_validation->run() == true) {
+
+            $nama_lengkap     = $this->input->post('nama_lengkap', true);
+            $username     = $this->input->post('username', true);
+            $password     = $this->input->post('password', true);
+            $level         = $this->input->post('level', true);
+
+            $data = array(
+                'nama_lengkap'    => $nama_lengkap,
+                'username'    => $username,
+                'password'     => $this->hash_password($password),
+                'level'         => $level,
+                // 'nama_file' => 'nopic.png'
+
+            );
+            $this->M_data->insert('tb_user', $data);
+            $this->session->set_flashdata('msg_sukses', 'User Berhasil Disimpan');
+            redirect(site_url('admin/data_users'));
+        } else {
+            $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+            $data['title'] = 'Users';
+            $this->load->view('admin/d_users/add_user', $data);
+        }
+    }
+
+    public function update_user()
+    {
+        $id_user = $this->uri->segment(3);
+        $where = array('id_user' => $id_user);
+        $data['list_data'] = $this->M_data->get_data('tb_user', $where);
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Edit User';
+        $this->load->view('admin/d_users/edit_user', $data);
+    }
+
+    public function proses_edituser()
+    {
+        $this->form_validation->set_rules('nama_lengkap', 'Nama', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('level', 'Level User', 'required');
+
+        if ($this->form_validation->run() == true) {
+
+            $id_user    = $this->input->post('id_user', true);
+            $nama_lengkap     = $this->input->post('nama_lengkap', true);
+            $username     = $this->input->post('username', true);
+            $level         = $this->input->post('level', true);
+
+            $where = array('id_user' => $id_user);
+            $data = array(
+                'nama_lengkap'    => $nama_lengkap,
+                'username'    => $username,
+                'level'         => $level,
+                // 'nama_file' => 'nopic.png'
+
+            );
+            $this->M_data->update('tb_user', $data, $where);
+            $this->session->set_flashdata('msg_sukses', 'User Berhasil Diubah');
+            redirect(site_url('admin/data_users'));
+        } else {
+            $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+            $data['title'] = 'Edit User';
+            $this->load->view('admin/d_users/edit_user', $data);
+        }
+    }
+
+    public function hapus_user()
+    {
+        $id_user = $this->uri->segment(3);
+        $where = array('id_user' => $id_user);
+        $this->M_data->delete('tb_user', $where);
+        $this->session->set_flashdata('msg_sukses', 'Data Berhasil Dihapus');
+        redirect(site_url('admin/data_users'));
+    }
     ####################################
     //* End Users
     ####################################
