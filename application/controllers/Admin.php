@@ -542,4 +542,17 @@ class Admin extends CI_Controller
     ####################################
     //* End Data Pelanggan
     ####################################
+    ####################################
+    //* Data Barang Masuk
+    ####################################
+    public function barang_masuk()
+    {
+        $data['list_data'] = $this->M_data->sel_brg_msk('tb_brg_msk');
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Data Barang Masuk';
+        $this->load->view('admin/d_brg_msk/tbl_brg_msk', $data);
+    }
+    ####################################
+    //* End Data Barang Masuk
+    ####################################
 }
