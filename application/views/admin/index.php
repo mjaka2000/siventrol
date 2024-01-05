@@ -52,7 +52,7 @@
                         <div class="icon">
                             <i class="fas fa-layer-group"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= site_url(); ?>admin/data_barang" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-4">
@@ -69,7 +69,7 @@
                         <div class="icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= site_url(); ?>admin/data_supplier" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-4">
@@ -86,7 +86,7 @@
                         <div class="icon">
                             <i class="fas fa-user"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= site_url(); ?>admin/data_pelanggan" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-4">
@@ -153,15 +153,15 @@
         "Selamat Siang",
         "Selamat Sore",
         "Selamat Malam",
-        "Selamat Tidur"
+        // "Selamat Tidur"
     ];
     let greetText = "";
-    if (curHr < 12) greetText = greetMes[0];
-    else if (curHr < 16) greetText = greetMes[1];
+    if (curHr < 11) greetText = greetMes[0];
+    else if (curHr < 15) greetText = greetMes[1];
     else if (curHr < 19) greetText = greetMes[2];
-    else if (curHr < 22) greetText = greetMes[3];
+    else if (curHr <= 23) greetText = greetMes[3];
     // else if (curHr < 22) greetText = greetMes[4];
-    else greetText = greetMes[4];
+    // else greetText = greetMes[4];
     greetElem.setAttribute('data-content', greetText);
     /*]]>*/
 </script>
