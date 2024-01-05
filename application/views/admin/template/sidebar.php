@@ -65,7 +65,7 @@
 
 
                 <li class="nav-item">
-                    <a href="<?= site_url(); ?>admin/#" class="nav-link">
+                    <a href="<?= site_url(); ?>admin/barang_masuk" class="nav-link">
                         <i class="far fa-calendar-alt nav-icon"></i>
                         <p>Barang Masuk</p>
                     </a>
