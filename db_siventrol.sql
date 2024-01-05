@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jan 2024 pada 14.50
+-- Waktu pembuatan: 05 Jan 2024 pada 05.07
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 7.4.33
 
@@ -43,6 +43,20 @@ CREATE TABLE `tb_barang` (
 INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `unit`, `harga_beli`, `harga_jual`, `diskon`) VALUES
 ('BRG-1', 'HP Samsung A5', 'pcs', '4500000', '5000000', '0'),
 ('BRG-2', 'Indomie Goreng', 'pcs', '3000', '3500', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_brg_msk`
+--
+
+CREATE TABLE `tb_brg_msk` (
+  `id_barang_masuk` varchar(10) NOT NULL,
+  `tgl_transaksi_bm` date NOT NULL,
+  `id_supplier` varchar(10) NOT NULL,
+  `id_barang` varchar(10) NOT NULL,
+  `tot_harga_bm` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -101,7 +115,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `nama_lengkap`, `password`, `level`, `last_login`) VALUES
-(1, 'admin', 'Admin', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2024-01-04 21:35:58');
+(1, 'admin', 'Admin', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2024-01-05 11:21:05');
 
 --
 -- Indexes for dumped tables
@@ -112,6 +126,14 @@ INSERT INTO `tb_user` (`id_user`, `username`, `nama_lengkap`, `password`, `level
 --
 ALTER TABLE `tb_barang`
   ADD PRIMARY KEY (`id_barang`);
+
+--
+-- Indeks untuk tabel `tb_brg_msk`
+--
+ALTER TABLE `tb_brg_msk`
+  ADD PRIMARY KEY (`id_barang_masuk`),
+  ADD KEY `id_supplier` (`id_supplier`),
+  ADD KEY `id_barang` (`id_barang`);
 
 --
 -- Indeks untuk tabel `tb_pelanggan`
