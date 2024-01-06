@@ -552,6 +552,14 @@ class Admin extends CI_Controller
         $data['title'] = 'Data Barang Masuk';
         $this->load->view('admin/d_brg_msk/tbl_brg_msk', $data);
     }
+
+    public function tambah_brg_msk()
+    {
+        $data['list_data'] = $this->M_data->sel_brg_msk('tb_brg_msk');
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Tambah Data Barang Masuk';
+        $this->load->view('admin/d_brg_msk/add_brg_msk', $data);
+    }
     ####################################
     //* End Data Barang Masuk
     ####################################
