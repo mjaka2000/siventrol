@@ -114,12 +114,20 @@ class M_data extends CI_Model
     ####################################
     //* Data Barang Masuk
     ####################################
+    public function get_id_brg_msk($tabel)
+    {
+        $query = $this->db->select_max('id_brg_msk')
+            ->from($tabel)
+            ->get();
+        return $query->result();
+    }
+
     public function sel_brg_msk($tabel)
     {
         $query = $this->db->select()
             ->from($tabel)
             ->join('tb_barang', 'tb_barang.id_barang = ' . $tabel . '.id_barang')
-            ->join('tb_supplier', 'tb_supplier.id_supplier = ' . $tabel . '.id_supplier')
+            // ->join('tb_supplier', 'tb_supplier.id_supplier = ' . $tabel . '.id_supplier')
             ->get();
         return $query->result();
     }
