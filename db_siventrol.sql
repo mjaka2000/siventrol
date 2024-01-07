@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jan 2024 pada 05.07
+-- Waktu pembuatan: 07 Jan 2024 pada 07.24
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 7.4.33
 
@@ -47,14 +47,26 @@ INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `unit`, `harga_beli`, `harg
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_brg_msk`
+-- Struktur dari tabel `tb_barang_masuk`
 --
 
-CREATE TABLE `tb_brg_msk` (
-  `id_barang_masuk` varchar(10) NOT NULL,
+CREATE TABLE `tb_barang_masuk` (
+  `id_brg_msk` varchar(10) NOT NULL,
   `tgl_transaksi_bm` date NOT NULL,
-  `id_supplier` varchar(10) NOT NULL,
+  `id_supplier` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_det_brg_msk`
+--
+
+CREATE TABLE `tb_det_brg_msk` (
+  `id_det_brg_msk` varchar(10) NOT NULL,
+  `id_brg_msk` varchar(10) NOT NULL,
   `id_barang` varchar(10) NOT NULL,
+  `qty_masuk` int(10) NOT NULL,
   `tot_harga_bm` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -115,7 +127,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `nama_lengkap`, `password`, `level`, `last_login`) VALUES
-(1, 'admin', 'Admin', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2024-01-05 11:21:05');
+(1, 'admin', 'Admin', '$2y$10$IzLuU6uxyHkApMWHK.TinuHPi1bfF1ty1H/X5RqJ5V545b4gvz9sW', 0, '2024-01-07 12:26:57');
 
 --
 -- Indexes for dumped tables
@@ -128,12 +140,19 @@ ALTER TABLE `tb_barang`
   ADD PRIMARY KEY (`id_barang`);
 
 --
--- Indeks untuk tabel `tb_brg_msk`
+-- Indeks untuk tabel `tb_barang_masuk`
 --
-ALTER TABLE `tb_brg_msk`
-  ADD PRIMARY KEY (`id_barang_masuk`),
-  ADD KEY `id_supplier` (`id_supplier`),
-  ADD KEY `id_barang` (`id_barang`);
+ALTER TABLE `tb_barang_masuk`
+  ADD PRIMARY KEY (`id_brg_msk`),
+  ADD KEY `id_supplier` (`id_supplier`);
+
+--
+-- Indeks untuk tabel `tb_det_brg_msk`
+--
+ALTER TABLE `tb_det_brg_msk`
+  ADD PRIMARY KEY (`id_det_brg_msk`),
+  ADD KEY `id_barang` (`id_barang`),
+  ADD KEY `id_brg_msk` (`id_brg_msk`);
 
 --
 -- Indeks untuk tabel `tb_pelanggan`
