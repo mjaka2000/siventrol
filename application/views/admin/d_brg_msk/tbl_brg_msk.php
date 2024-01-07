@@ -47,7 +47,7 @@
                                     <strong>Gagal!</strong><br> <?= $this->session->flashdata('msg_gagal'); ?>
                                 </div>
                             <?php } ?>
-                            <button onclick="window.location.href='<?= site_url('admin/tambah_brg_msk'); ?>'" style="margin-bottom:10px;" type="button" class="btn btn-sm btn-primary" name="tambah_data"><i class="fa fa-plus"></i>&nbsp;Tambah Data</button>
+                            <button onclick="window.location.href='<?= site_url('admin/tambah_barang_masuk'); ?>'" style="margin-bottom:10px;" type="button" class="btn btn-sm btn-primary" name="tambah_data"><i class="fa fa-plus"></i>&nbsp;Tambah Data</button>
 
                             <table id="examplejk" class="table table-bordered table-hover" style="width:100%">
                                 <thead>

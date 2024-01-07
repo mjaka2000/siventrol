@@ -27,94 +27,8 @@
 
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
-            <div class="row ">
-                <div class="col-md-6">
-                    <div class="card text-sm">
-
-                        <div class="card-body card-primary">
-                            <div class="info">
-                                <?php //foreach ($data_valid as $dv) { 
-                                ?>
-                                <form action="<?= site_url('admin/proses_brg_msk'); ?>" method="post" role="form">
-                                    <!-- <?php //foreach ($data_unit_update as $du) { 
-                                            ?> -->
-                                    <input type="hidden" name="id_u_sewa" value="#">
-                                    <div class="form-group row">
-                                        <label for="id_transaksi" class="col-sm-3 col-form-label">No. Transaksi</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="id_transaksi" class="form-control" readonly value="#">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="tanggal_keluar" class="col-sm-3 col-form-label">Tanggal Transaksi</label>
-                                        <div class="col-sm-9">
-                                            <input type="date" name="tanggal_keluar" class="form-control form_datetime" id="tanggal_keluar" required placeholder="Tanggal Keluar">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="nopol_mobil" class="col-sm-3 col-form-label">Supplier</label>
-                                        <div class="col-sm-9">
-                                            <select name="id_mobil" id="nopol" class="form-control" required>
-                                                <option value="">-- Pilih Supplier--</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- <?php //} 
-                                            ?> -->
-                                    <!-- </div> -->
-                                    <table id="examplejk" class="table table-bordered text-sm" style="text-align: center;">
-                                        <tbody>
-                                            <tr>
-                                                <th colspan="7">Barang yang dibeli</th>
-                                            </tr>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nama Barang</th>
-                                                <th style="width :10%">Qty</th>
-                                                <th>Satuan</th>
-                                                <th>Harga Satuan</th>
-                                                <th>Harga Total</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                            <tr>
-                                                <?php
-                                                $no = 1;
-                                                foreach ($list_data as $d) { ?>
-                                                    <td><?= $d->id_barang; ?></td>
-                                                    <td><?= $d->nama_barang; ?></td>
-                                                    <td><?= $d->unit; ?></td>
-                                                    <td>Rp&nbsp;<?= number_format($d->harga_beli); ?></td>
-                                                    <td> </td>
-                                            </tr>
-                                        <?php } ?>
-                                        <tr>
-                                            <td colspan="5" style="text-align: right;">
-                                                Total:
-                                            </td>
-                                            <td style="text-align: left;">
-                                                Rp&nbsp;
-                                                <?php // 
-                                                ?>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <!-- </div> -->
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <hr>
-                                    <div class="form-group" align="center">
-                                        <button onclick="history.back(-1)" type="button" class="btn btn-sm btn-default" name="btn_kembali"></i>Kembali</button>
-                                        <button type="submit" class="btn btn-sm btn-success">Simpan</button>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 ">
+            <div class="row tengah">
+                <div class="col-md-12 ">
                     <div class="card">
                         <div class="card-header">
                             <i class="fa fa-plus mr-2"></i>Tambah Transaksi Barang Masuk
@@ -132,7 +46,7 @@
                                     <strong>Peringatan!</strong><br> <?php echo validation_errors(); ?>
                                 </div>
                             <?php } ?>
-                            <table id="examplejk" class="table table-bordered text-sm" style="text-align: center;">
+                            <table id="examplejk1" class="table table-bordered text-sm" style="text-align: center;">
                                 <tbody>
                                     <tr>
                                         <th>Nama Barang</th>
@@ -144,25 +58,29 @@
                                         <tr>
                                             <td>
                                                 <div class="form-group">
-                                                    <select name="id_mobil" id="nopol" class="form-control" required>
+                                                    <select name="id_barang" id="id_barang" class="form-control" required>
                                                         <option value="">-- Pilih Nama Barang--</option>
-
+                                                        <?php foreach ($brg_msk as $d) { ?>
+                                                            <option value="<?= $d->id_barang ?>"><?= $d->nama_barang ?></option>
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input type="number" name="jenis_perbaikan" class="form-control" id="jenis_perbaikan" placeholder="" required>
+                                                    <!-- <input type="number" name="jenis_perbaikan" class="form-control" id="jenis_perbaikan" placeholder="" required> -->
+                                                    <input type="text" name="qty_masuk" class="form-control" id="qty_masuk" placeholder="" required onkeypress='return (event.charCode > 47 && event.charCode < 58)'>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input type="text" name="jenis_perbaikan" class="form-control" id="jenis_perbaikan" placeholder="" readonly required>
+                                                    <input type="text" name="harga_beli" class="form-control" id="harga_beli" placeholder="" readonly>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-sm btn-default">Add</button>
+                                                </div>
                                             </td>
                                             <!-- </div> -->
                                         </tr>
@@ -170,6 +88,93 @@
                                 </tbody>
                             </table>
 
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row tengah">
+                <div class="col-md-12">
+                    <div class="card text-sm">
+                        <div class="card-body">
+                            <?php //foreach ($data_valid as $dv) { 
+                            ?>
+                            <form action="<?= site_url('admin/proses_brg_msk'); ?>" method="post" role="form">
+
+                                <input type="hidden" name="id_u_sewa" value="#">
+                                <div class="form-group row">
+                                    <label for="id_transaksi" class="col-sm-3 col-form-label">No. Transaksi</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" name="id_barang_masuk" id="id_barang_masuk" class="form-control" readonly value="<?= $id_BM; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="tanggal_keluar" class="col-sm-3 col-form-label">Tanggal Transaksi</label>
+                                    <div class="col-sm-5">
+                                        <input type="date" name="tgl_transaksi_bm" class="form-control form_datetime" id="tgl_transaksi_bm" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="nopol_mobil" class="col-sm-3 col-form-label">Supplier</label>
+                                    <div class="col-sm-5">
+                                        <select name="id_supplier" id="nopol" class="form-control" required>
+                                            <option value="">-- Pilih Supplier--</option>
+                                            <?php foreach ($spl as $s) { ?>
+                                                <option value="<?= $s->id_supplier ?>"><?= $s->nama_supplier ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- </div> -->
+                                <table id="examplejk" class="table table-bordered text-sm" style="width:100%;text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="7">Barang yang dibeli</th>
+                                        </tr>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nama Barang</th>
+                                            <th style="width :10%">Qty</th>
+                                            <th>Satuan</th>
+                                            <th>Harga Satuan</th>
+                                            <th>Harga Total</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($list_data as $d) { ?>
+                                                <td><?= $d->id_barang; ?></td>
+                                                <td><?= $d->nama_barang; ?></td>
+                                                <td><?= $d->unit; ?></td>
+                                                <td>Rp&nbsp;<?= number_format($d->harga_beli); ?></td>
+                                                <td> </td>
+                                        </tr>
+                                    <?php } ?>
+                                    <tr>
+                                        <td colspan="5" style="text-align: right;">
+                                            Total:
+                                        </td>
+                                        <td style="text-align: left;">
+                                            Rp&nbsp;
+                                            <?php // 
+                                            ?>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <!-- </div> -->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <hr>
+                                <div class="form-group" align="center">
+                                    <button onclick="history.back(-1)" type="button" class="btn btn-sm btn-default" name="btn_kembali"></i>Kembali</button>
+                                    <button type="submit" class="btn btn-sm btn-success">Simpan</button>
+                                </div>
+                            </form>
 
                         </div>
                     </div>
@@ -195,17 +200,31 @@
     }); //* Script untuk memuat datatable
 </script>
 <script type="text/javascript">
-    //* Script untuk mengubah atribut jumlah hari
-    // function editHari() {
-    //     document.getElementById("jumlah_hari").removeAttribute("readonly");
-    // }
+    $(function() {
+        $('#examplejk1').DataTable({
+            // 'paging': true,
+            // 'lengthChange': false,
+            // 'searching': faslse,
+            // 'ordering': false,
+            // 'info': true,
+            'responsive': true,
+            'autoWidth': false
+        })
+    }); //* Script untuk memuat datatable
+</script>
+<script type="text/javascript">
+    //* Script untuk memuat data barang
+    $("#id_barang").change(function() {
+        let id_barang = $(this).val();
+        // let stok_gd = document.getElementById("stok_gd");
 
-    // $("#jumlah_hari, #harga_perhari").keyup(function() {
-    //     var harga = parseInt($("#harga_perhari").val()) || 0;
-    //     var hari = parseInt($("#jumlah_hari").val()) || 0;
+        <?php foreach ($brg_msk as $s) { ?>
+            if (id_barang == "<?php echo $s->id_barang ?>") {
 
-    //     $("#total_harga").val(harga * hari);
-    // })
+                $("#harga_beli").val("<?php echo $s->harga_beli ?>");
+            }
+        <?php } ?>
+    })
 </script>
 </body>
 
