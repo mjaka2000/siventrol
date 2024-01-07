@@ -553,12 +553,38 @@ class Admin extends CI_Controller
         $this->load->view('admin/d_brg_msk/tbl_brg_msk', $data);
     }
 
-    public function tambah_brg_msk()
+    public function tambah_barang_masuk()
     {
-        $data['list_data'] = $this->M_data->sel_brg_msk('tb_brg_msk');
+        $id_bm = $this->M_data->get_id_brg_msk('tb_barang_masuk');
+        foreach ($id_bm as $idbm) {
+            // if ($idbrg) {
+            $isi = substr($idbm->id_brg_msk, 3);
+            $id = (int) $isi;
+            $id = $id + 1;
+            $auto_id_bm = "BM-" . str_pad($id, 1, "0", STR_PAD_LEFT);
+            // }
+        }
+        $data['id_BM'] = $auto_id_bm;
+
+        $data['brg_msk'] = $this->M_data->select('tb_barang');
+        $data['spl'] = $this->M_data->select('tb_supplier');
+        $data['list_data'] = $this->M_data->sel_brg_msk('tb_det_brg_msk');
         $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
         $data['title'] = 'Tambah Data Barang Masuk';
         $this->load->view('admin/d_brg_msk/add_brg_msk', $data);
+    }
+
+    public function add_brg_msk()
+    {
+        $id_barang = $this->input->post('id_barang', TRUE);
+        $id_supplier = $this->input->post('id_supplier', TRUE);
+        $qty_masuk = $this->input->post('qty_masuk', TRUE);
+
+        $data = array(
+            'id_barang' => $id_barang,
+            'id_supplier' => $id_supplier,
+            'qty_masuk' => $qty_masuk
+        );
     }
     ####################################
     //* End Data Barang Masuk
