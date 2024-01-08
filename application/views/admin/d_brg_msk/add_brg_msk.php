@@ -74,7 +74,12 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input type="text" name="harga_beli" class="form-control" id="harga_beli" placeholder="" readonly>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon">Rp</span>
+                                                        </div>
+                                                        <input type="text" name="harga_beli" class="form-control" id="harga_beli" readonly>
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td>
@@ -221,7 +226,7 @@
         <?php foreach ($brg_msk as $s) { ?>
             if (id_barang == "<?php echo $s->id_barang ?>") {
 
-                $("#harga_beli").val("<?php echo $s->harga_beli ?>");
+                $("#harga_beli").val("<?php echo number_format($s->harga_beli) ?>");
             }
         <?php } ?>
     })
