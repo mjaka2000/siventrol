@@ -110,7 +110,7 @@
                                 <div class="form-group row">
                                     <label for="id_transaksi" class="col-sm-3 col-form-label">No. Transaksi</label>
                                     <div class="col-sm-5">
-                                        <input type="text" name="id_barang_masuk" id="id_barang_masuk" class="form-control" readonly value="<?= $id_BM; ?>">
+                                        <input type="text" name="id_brg_msk" id="id_brg_msk" class="form-control" readonly value="<?= $id_BM; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -150,25 +150,25 @@
                                     <tbody>
                                         <tr>
                                             <?php
-                                            $no = 1;
+                                            // $no = 1;
                                             foreach ($list_data as $d) { ?>
                                                 <td><?= $d->id_barang; ?></td>
                                                 <td><?= $d->nama_barang; ?></td>
+                                                <td><?= $d->qty_masuk; ?></td>
                                                 <td><?= $d->unit; ?></td>
                                                 <td>Rp&nbsp;<?= number_format($d->harga_beli); ?></td>
-                                                <td> </td>
+                                                <td>Rp&nbsp;<?= number_format($d->qty_masuk * $d->harga_beli); ?></td>
+                                                <td><a href="<?= site_url('admin/hapus_item/' . $d->id_det_brg_msk); ?>" title="Hapus" type="button" class="btn btn-sm btn-danger btn-delete" name="btn_delete"><i class="fa fa-trash"></i></a> </td>
                                         </tr>
+
+                                        <?php $total = $total + ($d->qty_masuk * $d->harga_beli); ?>
                                     <?php } ?>
                                     <tr>
-                                        <td colspan="5" style="text-align: right;">
-                                            Total:
-                                        </td>
-                                        <td style="text-align: left;">
-                                            Rp&nbsp;
-                                            <?php // 
-                                            ?>
+                                        <td colspan="5" style="text-align: right;">Total:</td>
+                                        <td style="text-align: left;">Rp&nbsp;<?php echo number_format($total); ?>
                                         </td>
                                         <td>
+                                            <input type="hidden" name="tot_harga_bm" value="<?php echo number_format($total); ?>">
                                         </td>
                                         <!-- </div> -->
                                     </tr>
@@ -230,6 +230,24 @@
             }
         <?php } ?>
     })
+</script>
+<script type="text/javascript">
+    $('.btn-delete').on('click', function() {
+        var getLink = $(this).attr('href');
+        Swal.fire({
+            title: 'Hapus Item',
+            text: 'Yakin ingin menghapus item?',
+            type: 'warning',
+            confirmButtonColor: '#d9534f',
+            showCancelButton: true,
+        }).then(result => {
+            //jika klik ya maka arahkan ke proses.php
+            if (result.isConfirmed) {
+                window.location.href = getLink
+            }
+        })
+        return false;
+    }); //* Script untuk memuat sweetalert hapus data
 </script>
 </body>
 

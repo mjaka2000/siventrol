@@ -67,12 +67,12 @@
                                         <?php foreach ($list_data as $d) : ?>
                                             <tr>
                                                 <td><?= $no++; ?></td>
-                                                <td><?= $d->id_barang_masuk; ?></td>
-                                                <td><?= $d->tgl_transaksi_bm; ?></td>
+                                                <td><?= $d->id_brg_msk; ?></td>
+                                                <td><?= date('d-m-Y', strtotime($d->tgl_transaksi_bm)); ?></td>
                                                 <td><?= $d->id_supplier; ?></td>
                                                 <td><?= $d->tot_harga_bm; ?></td>
                                                 <td>
-                                                    <a href="<?= site_url('admin/detail_barang_masuk/' . $d->id_barang_masuk); ?>" title="Lihat Detail" type="button" class="btn btn-sm btn-warning" name="btn_edit"><i class="fa fa-eye"></i></a>
+                                                    <!-- <a href="<?= site_url('admin/detail_barang_masuk/' . $d->id_barang_masuk); ?>" title="Lihat Detail" type="button" class="btn btn-sm btn-warning" name="btn_edit"><i class="fa fa-eye"></i></a> -->
                                                     <!-- <a href="<?= site_url('admin/update_pelanggan/' . $d->id_pelanggan); ?>" title="Ubah" type="button" class="btn btn-sm btn-info" name="btn_edit"><i class="fa fa-edit"></i></a>
                                                     <a href="<?= site_url('admin/hapus_pelanggan/' . $d->id_pelanggan); ?>" title="Hapus" type="button" class="btn btn-sm btn-danger btn-delete" name="btn_delete"><i class="fa fa-trash"></i></a> -->
                                                 </td>
