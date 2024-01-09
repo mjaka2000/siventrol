@@ -555,6 +555,7 @@ class Admin extends CI_Controller
 
     public function tambah_barang_masuk()
     {
+        error_reporting(error_reporting() & ~E_NOTICE);
         $id_bm = $this->M_data->get_id_brg_msk('tb_barang_masuk');
         foreach ($id_bm as $idbm) {
             // if ($idbrg) {
@@ -577,14 +578,65 @@ class Admin extends CI_Controller
     public function add_brg_msk()
     {
         $id_barang = $this->input->post('id_barang', TRUE);
-        $id_supplier = $this->input->post('id_supplier', TRUE);
         $qty_masuk = $this->input->post('qty_masuk', TRUE);
 
         $data = array(
             'id_barang' => $id_barang,
-            'id_supplier' => $id_supplier,
-            'qty_masuk' => $qty_masuk
+            'qty_masuk' => $qty_masuk,
+            'status_bm' => '0'
         );
+        $this->M_data->insert('tb_det_brg_msk', $data);
+        $this->session->set_flashdata('msg_sukses', 'Data Berhasil Disimpan');
+        redirect(site_url('admin/tambah_barang_masuk'));
+    }
+
+    public function hapus_item()
+    {
+        $uri = $this->uri->segment(3);
+        $where = array('id_det_brg_msk' => $uri);
+        $this->M_data->delete('tb_det_brg_msk', $where);
+        $this->session->set_flashdata('msg_sukses', 'Item Berhasil Dihapus');
+        redirect(site_url('admin/tambah_barang_masuk'));
+    }
+    /* public function proses_brg_msk()
+    {
+        $this->db->trans_start();
+
+        // $id_barang_masuk = $this->input->post('id_barang_masuk', true);
+        $tgl_transaksi_bm = $this->input->post('tgl_transaksi_bm', true);
+        $id_supplier = $this->input->post('id_supplier', TRUE);
+        $data = array(
+            // 'id_barang_masuk' => $id_barang_masuk,
+            'tgl_transaksi_bm' => $tgl_transaksi_bm,
+            'id_supplier' => $id_supplier,
+            // 'qty_masuk' => $qty_masuk,
+            'status_bm' => '0'
+        );
+        $this->M_data->insert('tb_barang_masuk', $data);
+        $last_id = $this->db->insert_id();
+
+
+        $this->db->trans_complete();
+        $this->session->set_flashdata('msg_daftar', 'Anda Berhasil Register');
+    }
+    */
+    public function proses_brg_msk()
+    {
+        $id_brg_msk = $this->input->post('id_brg_msk', true);
+        $tgl_transaksi_bm = $this->input->post('tgl_transaksi_bm', true);
+        $id_supplier = $this->input->post('id_supplier', TRUE);
+        $tot_harga_bm = $this->input->post('tot_harga_bm', TRUE);
+        $data = array(
+            'id_brg_msk' => $id_brg_msk,
+            'tgl_transaksi_bm' => $tgl_transaksi_bm,
+            'id_supplier' => $id_supplier,
+            'tot_harga_bm' => $tot_harga_bm,
+            // 'qty_masuk' => $qty_masuk,
+            // 'status_bm' => '0'
+        );
+        $this->M_data->proses_brg_msk($data);
+        $this->session->set_flashdata('msg_sukses', 'Data Berhasil Disimpan');
+        redirect(site_url('admin/barang_masuk'));
     }
     ####################################
     //* End Data Barang Masuk
