@@ -136,9 +136,18 @@ class M_data extends CI_Model
     {
         $query = $this->db->select()
             ->from($tabel)
-            ->join('tb_barang', 'tb_barang.id_barang = ' . $tabel . '.id_barang')
-            // ->join('tb_supplier', 'tb_supplier.id_supplier = ' . $tabel . '.id_supplier')
+            ->join('tb_barang', 'tb_barang.id_barang =' . $tabel . '.id_barang')
+            ->where('status_bm =', 0)
+            // ->where('tb_barang.id_barang')
             ->get();
         return $query->result();
+    }
+
+    public function proses_brg_msk($data)
+    {
+        $this->db->insert('tb_barang_masuk', $data);
+        $last_id = $this->db->query('SELECT id_brg_msk FROM tb_barang_masuk')->row_array();
+        $this->db->query("UPDATE tb_det_brg_msk SET id_brg_msk ='" . $last_id['id_brg_msk'] . "' WHERE status_bm ='0'");
+        $this->db->query("UPDATE tb_det_brg_msk SET status_bm = '1' WHERE status_bm ='0'");
     }
 }
