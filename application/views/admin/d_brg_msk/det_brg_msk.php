@@ -13,7 +13,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= site_url('admin'); ?>"><i class="fas fa-home"></i></a></li>
-                        <li class="breadcrumb-item active">Barang Masuk</li>
+                        <li class="breadcrumb-item active"><a href="<?= site_url('admin/barang_masuk'); ?>">Barang Masuk</a></li>
+                        <li class="breadcrumb-item active">Detail Barang Masuk</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -32,7 +33,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            Data Barang Masuk
+                            Detail Data Barang Masuk
                         </div>
                         <div class="card-body">
                             <?php if ($this->session->flashdata('msg_sukses')) { ?>
@@ -47,38 +48,65 @@
                                     <strong>Gagal!</strong><br> <?= $this->session->flashdata('msg_gagal'); ?>
                                 </div>
                             <?php } ?>
-                            <button onclick="window.location.href='<?= site_url('admin/tambah_barang_masuk'); ?>'" style="margin-bottom:10px;" type="button" class="btn btn-sm btn-primary" name="tambah_data"><i class="fa fa-plus"></i>&nbsp;Tambah Data</button>
-
+                            <table id="examplejk" class="table">
+                                <tbody>
+                                    <?php foreach ($det_data as $d) { ?>
+                                        <tr>
+                                            <th class="col-sm-2" style="vertical-align: middle;">No. Transaksi</th>
+                                            <td style="vertical-align: middle;">
+                                                :&nbsp;<?= $d->id_brg_msk; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="vertical-align: middle;">Tanggal Transaksi</th>
+                                            <td style="vertical-align: middle;">
+                                                :&nbsp;<?= date('d-m-Y', strtotime($d->tgl_transaksi_bm)); ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="vertical-align: middle;">Nama Supplier</th>
+                                            <td style="vertical-align: middle;">
+                                                :&nbsp;<?= $d->nama_supplier; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                             <table id="examplejk" class="table table-bordered table-hover" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th style="width :10px">No.</th>
-                                        <th>No. Transaksi</th>
-                                        <th>Tanggal Transaksi</th>
-                                        <th>Nama Supplier</th>
-                                        <th>Total Harga</th>
-                                        <th style="width:10%">Aksi</th>
+                                        <th colspan="7" style="text-align: center;">Barang yang dibeli</th>
+                                    </tr>
+                                    <tr>
+                                        <!-- <th style="width :10px">No.</th> -->
+                                        <th>Kode Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th style="width :10%">Qty</th>
+                                        <th>Satuan</th>
+                                        <th>Harga Satuan</th>
+                                        <th>Harga Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $no = 1;
-                                    if (is_array($list_data)) { ?>
-                                        <?php foreach ($list_data as $d) : ?>
-                                            <tr>
-                                                <td><?= $no++; ?></td>
-                                                <td><?= $d->id_brg_msk; ?></td>
-                                                <td><?= date('d-m-Y', strtotime($d->tgl_transaksi_bm)); ?></td>
-                                                <td><?= $d->nama_supplier; ?></td>
-                                                <td><?= $d->tot_harga_bm; ?></td>
-                                                <td>
-                                                    <a href="<?= site_url('admin/detail_barang_masuk/' . $d->id_brg_msk); ?>" title="Lihat Detail" type="button" class="btn btn-sm btn-warning" name="btn_edit"><i class="fa fa-eye"></i></a>
-                                                    <!-- <a href="<?= site_url('admin/update_pelanggan/' . $d->id_pelanggan); ?>" title="Ubah" type="button" class="btn btn-sm btn-info" name="btn_edit"><i class="fa fa-edit"></i></a>
-                                                    <a href="<?= site_url('admin/hapus_pelanggan/' . $d->id_pelanggan); ?>" title="Hapus" type="button" class="btn btn-sm btn-danger btn-delete" name="btn_delete"><i class="fa fa-trash"></i></a> -->
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                    $no = 1; ?>
+                                    <?php foreach ($list_data as $d) { ?>
+                                        <tr>
+                                            <!-- <td><?= $no++; ?></td> -->
+                                            <td><?= $d->id_barang; ?></td>
+                                            <td><?= $d->nama_barang; ?></td>
+                                            <td><?= $d->qty_masuk; ?></td>
+                                            <td><?= $d->unit; ?></td>
+                                            <td>Rp&nbsp;<?= number_format($d->harga_beli); ?></td>
+                                            <td>Rp&nbsp;<?= number_format($d->qty_masuk * $d->harga_beli); ?></td>
+                                        </tr>
+                                        <?php $total = $total + ($d->qty_masuk * $d->harga_beli); ?>
                                     <?php } ?>
+                                    <tr>
+                                        <td colspan="5" style="text-align: right;">Total Keseluruhan:</td>
+                                        <td style="text-align: left;">Rp&nbsp;<?php echo number_format($total); ?></td>
+                                        <!-- </div> -->
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
