@@ -31,6 +31,7 @@ class Admin extends CI_Controller
         $data['dtBrg'] = $this->M_data->numrows('tb_barang');
         $data['dtSpl'] = $this->M_data->numrows('tb_supplier');
         $data['dtPlg'] = $this->M_data->numrows('tb_pelanggan');
+        $data['dtBM'] = $this->M_data->numrows('tb_barang_masuk');
         $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
         $data['title'] = 'Home';
         $this->load->view('admin/index', $data);
@@ -637,6 +638,18 @@ class Admin extends CI_Controller
         $this->M_data->proses_brg_msk($data);
         $this->session->set_flashdata('msg_sukses', 'Data Berhasil Disimpan');
         redirect(site_url('admin/barang_masuk'));
+    }
+
+    public function detail_barang_masuk()
+    {
+        error_reporting(error_reporting() & ~E_NOTICE);
+        $uri = $this->uri->segment(3);
+        $where = array('id_brg_msk' => $uri);
+        $data['list_data'] = $this->M_data->get_det_brg_msk('tb_det_brg_msk', $where);
+        $data['det_data'] = $this->M_data->get_brg_msk('tb_barang_masuk', $where);
+        $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
+        $data['title'] = 'Detail Barang Masuk';
+        $this->load->view('admin/d_brg_msk/det_brg_msk', $data);
     }
     ####################################
     //* End Data Barang Masuk
