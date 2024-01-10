@@ -93,14 +93,17 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>0</h3>
-
+                            <?php if (!empty($dtBM)) { ?>
+                                <h3><?= $dtBM; ?></h3>
+                            <?php } else { ?>
+                                <h3>0</h3>
+                            <?php } ?>
                             <p>Total Pembelian</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-cart-arrow-down"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= site_url(); ?>admin/barang_masuk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-4">
