@@ -1,3 +1,3 @@
 ###################
-SIVENTROL Web App
+SIVENTROL Web
 ###################
