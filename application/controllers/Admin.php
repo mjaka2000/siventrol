@@ -197,12 +197,10 @@ class Admin extends CI_Controller
     {
         $id_brg = $this->M_data->get_id_barang('tb_barang');
         foreach ($id_brg as $idbrg) {
-            // if ($idbrg) {
             $isi = substr($idbrg->id_barang, 4);
             $id = (int) $isi;
             $id = $id + 1;
             $auto_id_brg = "BRG-" . str_pad($id, 1, "0", STR_PAD_LEFT);
-            // }
         }
         $data['kd_brg'] = $auto_id_brg;
         $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
@@ -225,7 +223,6 @@ class Admin extends CI_Controller
             $harga_beli = $this->input->post('harga_beli', TRUE);
             $harga_jual = $this->input->post('harga_jual', TRUE);
             $diskon = $this->input->post('diskon', TRUE);
-            // $status           = 1;
 
             $data = array(
                 'id_barang' => $id_barang,
@@ -270,10 +267,9 @@ class Admin extends CI_Controller
             $harga_beli = $this->input->post('harga_beli', TRUE);
             $harga_jual = $this->input->post('harga_jual', TRUE);
             $diskon = $this->input->post('diskon', TRUE);
-            // $status           = 1;
+
             $where = array('id_barang' => $id_barang);
             $data = array(
-                // 'id_barang' => $kode_barang,
                 'nama_barang' => $nama_barang,
                 'unit' => $unit,
                 'harga_beli' => $harga_beli,
@@ -317,12 +313,10 @@ class Admin extends CI_Controller
     {
         $id_spl = $this->M_data->get_id_supplier('tb_supplier');
         foreach ($id_spl as $idspl) {
-            // if ($idbrg) {
             $isi = substr($idspl->id_supplier, 4);
             $id = (int) $isi;
             $id = $id + 1;
             $auto_id_spl = "SPL-" . str_pad($id, 1, "0", STR_PAD_LEFT);
-            // }
         }
         $data['kd_spl'] = $auto_id_spl;
         $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
@@ -345,7 +339,6 @@ class Admin extends CI_Controller
             $kota_supplier = $this->input->post('kota_supplier', TRUE);
             $email_supplier = $this->input->post('email_supplier', TRUE);
             $kontak_supplier = $this->input->post('kontak_supplier', TRUE);
-            // $status           = 1;
 
             $data = array(
                 'id_supplier' => $id_supplier,
@@ -390,10 +383,9 @@ class Admin extends CI_Controller
             $kota_supplier = $this->input->post('kota_supplier', TRUE);
             $email_supplier = $this->input->post('email_supplier', TRUE);
             $kontak_supplier = $this->input->post('kontak_supplier', TRUE);
-            // $status           = 1;
+
             $where = array('id_supplier' => $id_supplier);
             $data = array(
-                // 'id_supplier' => $id_supplier,
                 'nama_supplier' => $nama_supplier,
                 'alamat_supplier' => $alamat_supplier,
                 'kota_supplier' => $kota_supplier,
@@ -437,12 +429,10 @@ class Admin extends CI_Controller
     {
         $id_plg = $this->M_data->get_id_pelanggan('tb_pelanggan');
         foreach ($id_plg as $idplg) {
-            // if ($idplg) {
             $isi = substr($idplg->id_pelanggan, 4);
             $id = (int) $isi;
             $id = $id + 1;
             $auto_id_plg = "PLG-" . str_pad($id, 1, "0", STR_PAD_LEFT);
-            // }
         }
         $data['kd_plg'] = $auto_id_plg;
         $data['user'] = $this->M_data->get_user('tb_user', $this->session->userdata('name'));
@@ -465,7 +455,6 @@ class Admin extends CI_Controller
             $kota_pelanggan = $this->input->post('kota_pelanggan', TRUE);
             $email_pelanggan = $this->input->post('email_pelanggan', TRUE);
             $kontak_pelanggan = $this->input->post('kontak_pelanggan', TRUE);
-            // $status           = 1;
 
             $data = array(
                 'id_pelanggan' => $id_pelanggan,
@@ -511,11 +500,9 @@ class Admin extends CI_Controller
             $kota_pelanggan = $this->input->post('kota_pelanggan', TRUE);
             $email_pelanggan = $this->input->post('email_pelanggan', TRUE);
             $kontak_pelanggan = $this->input->post('kontak_pelanggan', TRUE);
-            // $status           = 1;
 
             $where = array('id_pelanggan' => $id_pelanggan);
             $data = array(
-                // 'id_pelanggan' => $id_pelanggan,
                 'nama_pelanggan' => $nama_pelanggan,
                 'alamat_pelanggan' => $alamat_pelanggan,
                 'kota_pelanggan' => $kota_pelanggan,
@@ -559,12 +546,10 @@ class Admin extends CI_Controller
         error_reporting(error_reporting() & ~E_NOTICE);
         $id_bm = $this->M_data->get_id_brg_msk('tb_barang_masuk');
         foreach ($id_bm as $idbm) {
-            // if ($idbrg) {
             $isi = substr($idbm->id_brg_msk, 3);
             $id = (int) $isi;
             $id = $id + 1;
             $auto_id_bm = "BM-" . str_pad($id, 1, "0", STR_PAD_LEFT);
-            // }
         }
         $data['id_BM'] = $auto_id_bm;
 
@@ -587,7 +572,7 @@ class Admin extends CI_Controller
             'status_bm' => '0'
         );
         $this->M_data->insert('tb_det_brg_msk', $data);
-        $this->session->set_flashdata('msg_sukses', 'Data Berhasil Disimpan');
+        $this->session->set_flashdata('msg_sukses', 'Item Berhasil Ditambah');
         redirect(site_url('admin/tambah_barang_masuk'));
     }
 
@@ -599,28 +584,7 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('msg_sukses', 'Item Berhasil Dihapus');
         redirect(site_url('admin/tambah_barang_masuk'));
     }
-    /* public function proses_brg_msk()
-    {
-        $this->db->trans_start();
 
-        // $id_barang_masuk = $this->input->post('id_barang_masuk', true);
-        $tgl_transaksi_bm = $this->input->post('tgl_transaksi_bm', true);
-        $id_supplier = $this->input->post('id_supplier', TRUE);
-        $data = array(
-            // 'id_barang_masuk' => $id_barang_masuk,
-            'tgl_transaksi_bm' => $tgl_transaksi_bm,
-            'id_supplier' => $id_supplier,
-            // 'qty_masuk' => $qty_masuk,
-            'status_bm' => '0'
-        );
-        $this->M_data->insert('tb_barang_masuk', $data);
-        $last_id = $this->db->insert_id();
-
-
-        $this->db->trans_complete();
-        $this->session->set_flashdata('msg_daftar', 'Anda Berhasil Register');
-    }
-    */
     public function proses_brg_msk()
     {
         $id_brg_msk = $this->input->post('id_brg_msk', true);
@@ -632,8 +596,6 @@ class Admin extends CI_Controller
             'tgl_transaksi_bm' => $tgl_transaksi_bm,
             'id_supplier' => $id_supplier,
             'tot_harga_bm' => $tot_harga_bm,
-            // 'qty_masuk' => $qty_masuk,
-            // 'status_bm' => '0'
         );
         $this->M_data->proses_brg_msk($data);
         $this->session->set_flashdata('msg_sukses', 'Data Berhasil Disimpan');
