@@ -35,12 +35,7 @@
                             Data Barang
                         </div>
                         <div class="card-body">
-                            <?php if ($this->session->flashdata('msg_sukses')) { ?>
-                                <div class="alert alert-success alert-dismissible">
-                                    <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
-                                    <strong>Berhasil!</strong><br> <?= $this->session->flashdata('msg_sukses'); ?>
-                                </div>
-                            <?php } ?>
+
                             <?php if ($this->session->flashdata('msg_gagal')) { ?>
                                 <div class="alert alert-danger alert-dismissible">
                                     <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
@@ -140,10 +135,24 @@
             if (result.isConfirmed) {
                 window.location.href = getLink
             }
+            Swal.fire({
+                title: "Berhasil!",
+                text: '<?= $this->session->flashdata('msg_sukses'); ?>',
+                icon: "success"
+            })
         })
         return false;
     }); //* Script untuk memuat sweetalert hapus data
 </script>
+<?php if ($this->session->flashdata('msg_sukses')) { ?>
+    <script type="text/javascript">
+        Swal.fire({
+            title: "Berhasil!",
+            text: '<?= $this->session->flashdata('msg_sukses'); ?>',
+            icon: "success"
+        })
+    </script>
+<?php } ?>
 </body>
 
 </html>
